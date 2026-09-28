@@ -10,6 +10,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/blogs">blogs</Link>
           {" | "}
           <Link href="/blogs/new">create new</Link>
+          {" | "}
+          <Link href="/users">users</Link>
         </nav>
         {children}
       </body>
