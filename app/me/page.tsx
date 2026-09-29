@@ -29,7 +29,7 @@ async function ProfilePage() {
       </div>
       <hr className="text-gray-500 my-6" />
       <h2 className="text-2xl font-bold mb-4">Reading List</h2>
-      <h2 className="text-xl font-bold mb-4">Unread (0)</h2>
+      <h2 className="text-xl font-bold mb-4">Unread ({unreadItems.length})</h2>
       {unreadItems.length === 0 ? (
         <p className="text-gray-500">No unread items.</p>
       ) : (
@@ -56,7 +56,7 @@ async function ProfilePage() {
         </ul>
       )}
       <hr className="text-gray-500 my-6" />
-      <h2 className="text-xl font-bold mb-4">Read (0)</h2>
+      <h2 className="text-xl font-bold mb-4">Read ({readItems.length})</h2>
       {readItems.length === 0 ? (
         <p className="text-gray-500">No read items.</p>
       ) : (
