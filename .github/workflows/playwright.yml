@@ -48,6 +48,9 @@ jobs:
           fi
 
       - name: Run database migrations
+        env:
+          NODE_ENV: test
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npx drizzle-kit push
 
       - name: Run Playwright tests
