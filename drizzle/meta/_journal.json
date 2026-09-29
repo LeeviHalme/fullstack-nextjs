@@ -15,6 +15,27 @@
       "when": 1790601324338,
       "tag": "0001_bright_karma",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790603166424,
+      "tag": "0002_overrated_wasp",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790683037353,
+      "tag": "0003_even_paladin",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790684383535,
+      "tag": "0004_early_pet_avengers",
+      "breakpoints": true
     }
   ]
 }

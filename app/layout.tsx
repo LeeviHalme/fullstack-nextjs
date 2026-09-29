@@ -1,19 +1,20 @@
-import Link from "next/link";
+import "./globals.css";
+import AuthSessionProvider from "./components/AuthSessionProvider";
+import Navbar from "./components/Navbar";
+import Notification from "./components/Notification";
+import { NotificationProvider } from "./components/NotificationContext";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <nav>
-          <Link href="/">home</Link>
-          {" | "}
-          <Link href="/blogs">blogs</Link>
-          {" | "}
-          <Link href="/blogs/new">create new</Link>
-          {" | "}
-          <Link href="/users">users</Link>
-        </nav>
-        {children}
+      <body className="min-h-screen text-foreground">
+        <AuthSessionProvider>
+          <NotificationProvider>
+            <Navbar />
+            <Notification />
+            {children}
+          </NotificationProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );

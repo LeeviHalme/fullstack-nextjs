@@ -12,6 +12,20 @@ export const getUserById = async (id: number) => {
   });
 };
 
+export const getUserByApiToken = async (apiToken: string) => {
+  return db.query.users.findFirst({
+    where: eq(users.apiToken, apiToken),
+    columns: {
+      id: true,
+      username: true,
+      name: true,
+    },
+    with: {
+      blogs: true,
+    },
+  });
+};
+
 export const getUserAndBlogsByUsername = async (username: string) => {
   return db.query.users.findFirst({
     where: eq(users.username, username),
