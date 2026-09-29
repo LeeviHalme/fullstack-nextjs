@@ -1,7 +1,5 @@
 "use client";
 
-// for some reason the types wont work bruh
-// @ts-expect-error
 import Homepage from "./homepage.mdx";
 
 const Home = () => {
