@@ -10,6 +10,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: test
 
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +31,6 @@ jobs:
           echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env.test
           echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" >> .env.test
           echo "NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}" >> .env.test
-          echo "NODE_ENV=test" >> .env.test
 
       - name: Verify environment setup
         run: |
@@ -48,9 +49,6 @@ jobs:
           fi
 
       - name: Run database migrations
-        env:
-          NODE_ENV: test
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npx drizzle-kit push
 
       - name: Run Playwright tests
