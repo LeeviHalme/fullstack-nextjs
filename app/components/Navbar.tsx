@@ -25,7 +25,7 @@ function Navbar() {
               create new
             </Link>
             <Link href="/me" className="hover:text-gray-300">
-              profile
+              me
             </Link>
             <em className="text-gray-300">{session.user?.name} logged in</em>
             <button

@@ -17,85 +17,96 @@ async function ProfilePage() {
   const readItems = readingListItems.filter(item => item.read);
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto p-6" data-testid="user-profile">
       <h2 className="text-2xl font-bold mb-4">My Profile</h2>
       <div className="mt-4 space-y-2">
-        <div>
+        <div data-testid="user-name">
           <strong>Name:</strong> {user.name}
         </div>
-        <div>
+        <div data-testid="user-username">
           <strong>Username:</strong> {user.username}
         </div>
       </div>
       <hr className="text-gray-500 my-6" />
-      <h2 className="text-2xl font-bold mb-4">Reading List</h2>
-      <h2 className="text-xl font-bold mb-4">Unread ({unreadItems.length})</h2>
-      {unreadItems.length === 0 ? (
-        <p className="text-gray-500">No unread items.</p>
-      ) : (
-        <ul className="space-y-2">
-          {unreadItems.map(item => (
-            <li key={item.id} className="border rounded p-3 flex justify-between items-center">
-              <a
-                href={item.blog.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline">
-                {item.blog.title} by {item.blog.author}
-              </a>
-              <form action={markAsReadAction}>
-                <input type="hidden" name="id" value={item.blog.id} />
-                <button
-                  type="submit"
-                  className="bg-green-600 hover:bg-green-500 px-3 py-1 rounded text-sm cursor-pointer">
-                  Mark as Read
-                </button>
-              </form>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div data-testid="reading-list-section">
+        <h2 className="text-2xl font-bold mb-4">Reading List</h2>
+        <h2 className="text-xl font-bold mb-4">Unread ({unreadItems.length})</h2>
+        {unreadItems.length === 0 ? (
+          <p className="text-gray-500" data-testid="no-unread-blogs">
+            No unread items.
+          </p>
+        ) : (
+          <ul className="space-y-2" data-testid="unread-section">
+            {unreadItems.map(item => (
+              <li key={item.id} className="border rounded p-3 flex justify-between items-center">
+                <a
+                  href={item.blog.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline">
+                  {item.blog.title} by {item.blog.author}
+                </a>
+                <form action={markAsReadAction}>
+                  <input type="hidden" name="id" value={item.blog.id} />
+                  <button
+                    data-testid={`mark-read-${item.blog.id}`}
+                    type="submit"
+                    className="bg-green-600 hover:bg-green-500 px-3 py-1 rounded text-sm cursor-pointer">
+                    Mark as Read
+                  </button>
+                </form>
+              </li>
+            ))}
+          </ul>
+        )}
+        <hr className="text-gray-500 my-6" />
+        <h2 className="text-xl font-bold mb-4">Read ({readItems.length})</h2>
+        {readItems.length === 0 ? (
+          <p className="text-gray-500" data-testid="empty-reading-list">
+            No read items.
+          </p>
+        ) : (
+          <ul className="space-y-2">
+            {readItems.map(item => (
+              <li key={item.id} className="border rounded p-3">
+                <a
+                  href={item.blog.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline">
+                  {item.blog.title} by {item.blog.author}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <hr className="text-gray-500 my-6" />
-      <h2 className="text-xl font-bold mb-4">Read ({readItems.length})</h2>
-      {readItems.length === 0 ? (
-        <p className="text-gray-500">No read items.</p>
-      ) : (
-        <ul className="space-y-2">
-          {readItems.map(item => (
-            <li key={item.id} className="border rounded p-3">
-              <a
-                href={item.blog.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline">
-                {item.blog.title} by {item.blog.author}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-      <hr className="text-gray-500 my-6" />
-      <h2 className="text-2xl font-bold mb-4">API Token</h2>
-      {user.apiToken ? (
-        <div className="mb-4 border border-gray-500 rounded p-4 space-y-2">
-          <p className="text-gray-500">Current Token:</p>
-          <input
-            type="text"
-            value={user.apiToken}
-            readOnly
-            className="border border-gray-500 bg-gray-800 rounded p-2 w-full"
-          />
-        </div>
-      ) : (
-        <p className="mb-4 text-gray-500">You don't have an API token yet.</p>
-      )}
-      <form action={generateApiToken}>
-        <button
-          type="submit"
-          className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm cursor-pointer">
-          Generate New Token
-        </button>
-      </form>
+      <div data-testid="api-token-section">
+        <h2 className="text-2xl font-bold mb-4">API Token</h2>
+        {user.apiToken ? (
+          <div
+            className="mb-4 border border-gray-500 rounded p-4 space-y-2"
+            data-testid="token-display">
+            <p className="text-gray-500">Current Token:</p>
+            <p data-testid="api-token" className="border border-gray-500 rounded p-2 w-full">
+              {user.apiToken}
+            </p>
+          </div>
+        ) : (
+          <p className="mb-4 text-gray-500" data-testid="no-token-message">
+            You don't have an API token yet.
+          </p>
+        )}
+        <form action={generateApiToken}>
+          <button
+            data-testid="generate-token-button"
+            type="submit"
+            className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm cursor-pointer">
+            Generate New Token
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

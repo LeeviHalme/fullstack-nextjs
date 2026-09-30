@@ -16,17 +16,19 @@ async function BlogList({ searchParams }: BlogListProps) {
         <input
           type="text"
           name="q"
+          data-testid="filter-input"
           placeholder="Search blogs..."
           className="border rounded p-2 mr-2 flex-1"
         />
         <button
+          data-testid="search-button"
           type="submit"
           className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm cursor-pointer">
           Search
         </button>
       </form>
       {blogs.length === 0 && <p>No blogs found.</p>}
-      <ul className="space-y-2">
+      <ul className="space-y-2" data-testid="blogs-list">
         {blogs
           .sort((a, b) => b.likes - a.likes)
           .map(blog => (

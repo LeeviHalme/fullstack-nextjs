@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { db } from "./db";
 import { users } from "./db/schema";
+import { LOGIN_PATH, REGISTER_PATH } from "./app/constants";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -40,7 +41,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: LOGIN_PATH,
+    newUser: REGISTER_PATH,
   },
   session: {
     strategy: "jwt",

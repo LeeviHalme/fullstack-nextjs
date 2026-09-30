@@ -1,6 +1,8 @@
 "use client";
 
 import { registerUser } from "@/app/actions/users";
+import { LOGIN_PATH } from "@/app/constants";
+import Link from "next/link";
 import { useActionState } from "react";
 
 const initialState: { errors: { [key: string]: string }; values: { [key: string]: string } } = {
@@ -16,8 +18,9 @@ export default function RegisterPage() {
       <h2 className="text-2xl font-bold mb-4">Register</h2>
       <form action={formAction} className="space-y-4">
         <div className="flex flex-col gap-2">
-          <label>Username</label>
+          <label htmlFor="username">Username</label>
           <input
+            id="username"
             type="text"
             name="username"
             defaultValue={state.values?.username}
@@ -25,21 +28,29 @@ export default function RegisterPage() {
           />
         </div>
         {state.errors && state.errors?.username && (
-          <p style={{ color: "red" }}>{state.errors.username}</p>
+          <p data-testid="username-error" style={{ color: "red" }}>
+            {state.errors.username}
+          </p>
         )}
         <div className="flex flex-col gap-2">
-          <label>Name</label>
+          <label htmlFor="name">Name</label>
           <input
+            id="name"
             type="text"
             name="name"
             defaultValue={state.values?.name}
             className="border rounded p-2 flex-1"
           />
         </div>
-        {state.errors && state.errors?.name && <p style={{ color: "red" }}>{state.errors.name}</p>}
+        {state.errors && state.errors?.name && (
+          <p data-testid="name-error" style={{ color: "red" }}>
+            {state.errors.name}
+          </p>
+        )}
         <div className="flex flex-col gap-2">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
+            id="password"
             type="password"
             name="password"
             defaultValue={state.values?.password}
@@ -47,21 +58,37 @@ export default function RegisterPage() {
           />
         </div>
         {state.errors && state.errors?.password && (
-          <p style={{ color: "red" }}>{state.errors.password}</p>
+          <p data-testid="password-error" style={{ color: "red" }}>
+            {state.errors.password}
+          </p>
         )}
         <div className="flex flex-col gap-2">
-          <label>Confirm Password</label>
-          <input type="password" name="passwordConfirm" className="border rounded p-2 flex-1" />
+          <label htmlFor="passwordConfirm">Confirm Password</label>
+          <input
+            id="passwordConfirm"
+            type="password"
+            name="passwordConfirm"
+            className="border rounded p-2 flex-1"
+          />
         </div>
         {state.errors && state.errors?.passwordConfirm && (
-          <p style={{ color: "red" }}>{state.errors.passwordConfirm}</p>
+          <p data-testid="passwordConfirm-error" style={{ color: "red" }}>
+            {state.errors.passwordConfirm}
+          </p>
         )}
         <button
+          data-testid="register-button"
           type="submit"
           className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm cursor-pointer">
           Register
         </button>
       </form>
+      <p className="mt-4">
+        Already have an account?{" "}
+        <Link href={LOGIN_PATH} className="text-blue-500 hover:underline">
+          Login here
+        </Link>
+      </p>
     </div>
   );
 }

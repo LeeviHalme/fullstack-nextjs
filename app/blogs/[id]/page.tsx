@@ -21,14 +21,16 @@ async function BlogPage({ params }: BlogPageProps) {
   const canAddToReadingList = (user && !(await isInReadingList(user.id, blog.id))) || false;
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">{blog.title}</h2>
+    <div className="max-w-2xl mx-auto p-6" data-testid="blog-detail">
+      <h2 className="text-2xl font-bold mb-4" data-testid="blog-title">
+        {blog.title}
+      </h2>
       <div className="space-y-2">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2" data-testid="blog-author">
           <b>Author:</b>
           <p>{blog.author}</p>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2" data-testid="blog-url">
           <b>URL:</b>
           <a
             href={blog.url}
@@ -38,7 +40,7 @@ async function BlogPage({ params }: BlogPageProps) {
             {blog.url}
           </a>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2" data-testid="blog-likes">
           <b>Likes:</b>
           <div className="flex items-center gap-2">
             <p className="text-amber-500">{blog.likes}</p>
@@ -54,6 +56,7 @@ async function BlogPage({ params }: BlogPageProps) {
               <form action={addToReadingListAction}>
                 <input type="hidden" name="id" value={blog.id} />
                 <button
+                  data-testid="add-to-reading-list-button"
                   type="submit"
                   className="bg-green-600 hover:bg-green-500 px-3 py-1 rounded text-sm cursor-pointer">
                   Add to Reading List

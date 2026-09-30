@@ -18,7 +18,7 @@ function NewBlog() {
 
   useEffect(() => {
     if (state.success) {
-      showNotification("note created");
+      showNotification("blog created");
       router.push("/blogs");
     }
   }, [state, showNotification, router]);
@@ -28,7 +28,7 @@ function NewBlog() {
       <h2 className="text-2xl font-bold mb-4">Create a New Blog</h2>
       <form action={formAction} className="space-y-4">
         <div className="flex flex-col gap-2">
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
             id="title"
@@ -41,7 +41,7 @@ function NewBlog() {
           <p style={{ color: "red" }}>{state.errors.title}</p>
         )}
         <div className="flex flex-col gap-2">
-          <label htmlFor="author">Author:</label>
+          <label htmlFor="author">Author</label>
           <input
             type="text"
             id="author"
@@ -54,7 +54,7 @@ function NewBlog() {
           <p style={{ color: "red" }}>{state.errors.author}</p>
         )}
         <div className="flex flex-col gap-2">
-          <label htmlFor="url">URL:</label>
+          <label htmlFor="url">URL</label>
           <input
             type="text"
             id="url"
@@ -65,9 +65,10 @@ function NewBlog() {
         </div>
         {state.errors && state.errors?.url && <p style={{ color: "red" }}>{state.errors.url}</p>}
         <button
+          data-testid="create-blog-button"
           type="submit"
           className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm cursor-pointer">
-          Add Blog
+          Create
         </button>
       </form>
     </div>
