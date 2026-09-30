@@ -2,9 +2,7 @@
 
 [![End-to-End Tests](https://github.com/LeeviHalme/fullstack-nextjs/actions/workflows/playwright.yml/badge.svg)](https://github.com/LeeviHalme/fullstack-nextjs/actions/workflows/playwright.yml)
 
-Repository for Full Stack open: Next.js -course organized by University of Helsinki in Fall 2026. [Live demo deployed on Vercel](https://fullstack-nextjs-jet.vercel.app)
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Repository for Full Stack Open: Next.js -course organized by University of Helsinki in Fall 2026. [Live demo](https://fullstack-nextjs-jet.vercel.app)
 
 ## Getting Started
 
